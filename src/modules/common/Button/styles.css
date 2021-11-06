@@ -1,0 +1,22 @@
+.containedButton {
+    background-color: var(--green-primary) !important;
+    color: #fff !important;
+    text-transform: capitalize !important;
+}
+
+.containedButton:hover {
+    background-color: #116770 !important;
+}
+
+.outlinedButton {
+    background-color: none !important;
+    color: var(--text-color-primary) !important;
+    border-color: var(--text-color-secondary) !important;
+    text-transform: capitalize !important;
+}
+
+.outlinedButton:hover {
+    background-color: var(--text-color-primary) !important;
+    border-color: var(--text-color-secondary) !important;
+    color: #fff !important;
+}

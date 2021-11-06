@@ -1,0 +1,8 @@
+.dashboardContainer {
+    flex-basis: 80px;
+}
+
+.bodyContainer {
+    background-color: var(--background-primary);
+    padding: 45px 195px 45px 195px;
+}
