@@ -2,7 +2,7 @@
   --red-primary: #F75961;
   --green-primary: #008392;
   --background-primary: #F9F9FB;
-  --text-color-primary: #222222;
+  --text-color-primary: #2B2B2B;
   --text-highlight: #D33852;
   --text-color-secondary: #717171;
   --text-color-heading-primmary: #393939;
@@ -11,4 +11,5 @@
   --disabled-text: #B0B0B0;
   --disabled-border: #E5E5E5;
   --skelleton-color: #f0eff1;
+  --border-color: #DBDBDB;
 }

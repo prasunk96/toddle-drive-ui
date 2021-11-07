@@ -1,0 +1,2 @@
+export const SET_BREAD_CRUMBS = 'SET_BREAD_CRUMBS';
+export const SET_ACTIVE_FOLDER = 'SET_ACTIVE_FOLDER';

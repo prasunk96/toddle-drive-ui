@@ -1,19 +1,21 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
 import CustomButton from '../../common/Button';
 import Searchbox from '../../common/Searchbox';
 
 const Header = () => {
+    const { activeFolder } = useSelector(state => state.dashboard);
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box>
             <Grid container>
                 <Grid container item xs="6" direction="row" spacing={2}>
                     <Grid item xs="12">
-                        <Typography fontWeight="bold" variant="h2" fontSize="24px" lineHeight="33px">New hire onborading</Typography>
+                        <Typography fontWeight="bold" variant="h2" fontSize="24px" lineHeight="33px">{activeFolder.name}</Typography>
                     </Grid>
                     <Grid item xs="12">
-                        <Typography color="var(--text-color-secondary)" variant="h4" fontSize="16px" lineHeight="22px">3 Folders, 4 Files</Typography>
+                        <Typography color="var(--text-color-secondary)" variant="h4" fontSize="16px" lineHeight="22px">{`${activeFolder.foldersCount} Folders, ${activeFolder.filesCount} Files`}</Typography>
                     </Grid>
                     <Grid item xs="12">
                         <Searchbox />
