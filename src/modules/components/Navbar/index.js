@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Grid } from '@mui/material';
+import { Grid, Skeleton } from '@mui/material';
 import Breadcrumb from '../../common/Breadcrumb';
 import { setBreadCrumbs, setActiveFolderData } from '../Dashboard/actions';
 import { driveData } from '../../../data';
@@ -10,7 +10,7 @@ import { findDeepObjectAndReturn } from '../../../utils';
 
 const Navbar = () => {
     const dispatch = useDispatch();
-    const { breadcrumbs } = useSelector(state => state.dashboard);
+    const { breadcrumbs, loading } = useSelector(state => state.dashboard);
     const handleBreadcrumbClicked = (item) => {
         let index = breadcrumbs.indexOf(item);
         const updatedBreadcrumb = breadcrumbs.slice(0, index + 1);
@@ -20,7 +20,7 @@ const Navbar = () => {
     }
     return (
         <Grid container className="navbarContainer" alignItems="center" pl={'25px'}>
-            <Breadcrumb handlLinkClicked={handleBreadcrumbClicked} breadcrumb={breadcrumbs} />
+            {loading ? <><Skeleton variant="text" height={24} width="50px" sx={{ marginRight: '10px' }} /> <Skeleton variant="text" height={24} width="50px" /></> : <Breadcrumb handlLinkClicked={handleBreadcrumbClicked} breadcrumb={breadcrumbs} />}
         </Grid>
     )
 }

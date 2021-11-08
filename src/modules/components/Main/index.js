@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, Skeleton } from '@mui/material';
 import { Box } from '@mui/system';
 import Folder from '../../common/Folder';
 import File from '../../common/File';
@@ -9,9 +9,11 @@ import Modal from '../../common/Modal';
 import InputModal from '../../common/InputModal';
 import * as _ from 'lodash';
 
+import './style.css';
+
 const Main = () => {
     const dispatch = useDispatch();
-    const { activeFolder, breadcrumbs, totalFiles, totalFolders } = useSelector(state => state.dashboard);
+    const { activeFolder, breadcrumbs, totalFiles, totalFolders, loading } = useSelector(state => state.dashboard);
 
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isRenameModalOpen, setIsRenameModalOpen] = useState(false);
@@ -146,9 +148,13 @@ const Main = () => {
         <Box mt={4}>
             <Grid container spacing={3} direction="row">
                 <Grid container item xs="12" spacing={2} direction="row">
-                    <Grid item><Typography variant="h6" lineHeight="24px" fontSize="16px">{`${totalFolders} folders`}</Typography></Grid>
-                    <Grid container item spacing={2}>
-                        {Object.keys(activeFolder).length && activeFolder.folders.map((folder, index) => <Grid item key={`${folder.name}-${index}`} >
+                    <Grid item><Typography variant="h6" lineHeight="24px" fontSize="16px">{loading ? <Skeleton variant="text" height={24} width={100} /> : `${totalFolders} folders`}</Typography></Grid>
+                    <Grid id="gridFoldersContainer" container item spacing={2}>
+                        {loading ? Array.from(new Array(5)).map((item, index) => <Grid item key={item} >
+                            <Skeleton variant="rectangular" width={246} height={190} />
+                            <Skeleton width="60%" />
+                            <Skeleton />
+                            </Grid>) : Object.keys(activeFolder).length && activeFolder.folders.map((folder, index) => <Grid item key={`${folder.name}-${index}`} >
                             <Folder
                                 folder={folder}
                                 name={folder.name}
@@ -159,9 +165,13 @@ const Main = () => {
                     </Grid>
                 </Grid>
                 <Grid container item xs="12" spacing={1} direction="row">
-                    <Grid item><Typography variant="h6" lineHeight="24px" fontSize="16px">{`${totalFiles} files`}</Typography></Grid>
-                    <Grid container item spacing={2}>
-                    {Object.keys(activeFolder).length && activeFolder.files.map((file, index) => <Grid item key={`${file.name}-${index}`} >
+                    <Grid item><Typography variant="h6" lineHeight="24px" fontSize="16px">{loading ? <Skeleton variant="text" height={24} width={100} /> : `${totalFiles} files`}</Typography></Grid>
+                    <Grid id="gridFilesContainer" container item spacing={2}>
+                    {loading ? Array.from(new Array(5)).map((item, index) => <Grid item key={item} >
+                            <Skeleton variant="rectangular" width={246} height={190} />
+                            <Skeleton width="60%" />
+                            <Skeleton />
+                            </Grid>) : Object.keys(activeFolder).length && activeFolder.files.map((file, index) => <Grid item key={`${file.name}-${index}`} >
                             <File
                                 file={file}
                                 name={file.name}

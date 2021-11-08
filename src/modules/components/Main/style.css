@@ -1,0 +1,13 @@
+@media screen and (max-width: 426px) {
+    #gridFoldersContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #gridFilesContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

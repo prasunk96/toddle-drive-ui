@@ -1,11 +1,12 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { SET_BREAD_CRUMBS, SET_ACTIVE_FOLDER } from './actionTypes';
+import { SET_BREAD_CRUMBS, SET_ACTIVE_FOLDER, SET_LOADING } from './actionTypes';
 
 const initialState = {
     breadcrumbs: [],
     activeFolder: {},
     totalFolders: 0,
-    totalFiles: 0
+    totalFiles: 0,
+    loading: false
 };
 
 export default (state = initialState, action) => {
@@ -21,6 +22,11 @@ export default (state = initialState, action) => {
                 activeFolder: action.payload,
                 totalFiles: action.payload.files.length || 0,
                 totalFolders: action.payload.folders.length || 0
+            }
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: action.payload
             }
         default: {
             return {

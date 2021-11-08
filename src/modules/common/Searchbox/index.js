@@ -12,10 +12,12 @@ const Search = styled('div')(({ theme }) => ({
     backgroundColor: '#fff',
     marginRight: theme.spacing(2),
     marginLeft: 0,
-    width: '320px',
-    height: '40px',
+    width: '100%',
     fontSize: '16px',
-    marginTop: theme.spacing(4)
+    marginTop: theme.spacing(4),
+    [theme.breakpoints.down('md')]: {
+        width: '33ch',
+    }
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -49,15 +51,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('md')]: {
-            width: '25ch',
+            width: '20ch',
         }
     },
 }));
 
-const Searchbox = () => {
-    const [query, setQuery] = useState('');
+const Searchbox = ({ onChangeQuery, query }) => {
     const handleClearSearch = () => {
-        setQuery('');
+        onChangeQuery('');
     }
     return (
         <Search>
@@ -69,7 +70,7 @@ const Searchbox = () => {
             </SearchIconWrapper>
             <StyledInputBase
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => onChangeQuery(e.target.value)}
                 placeholder="Search for a folder or file"
                 inputProps={{ 'aria-label': 'search' }}
             />
