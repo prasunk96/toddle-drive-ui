@@ -4,11 +4,9 @@ import { Grid } from '@mui/material';
 import Breadcrumb from '../../common/Breadcrumb';
 import { setBreadCrumbs, setActiveFolderData } from '../Dashboard/actions';
 import { driveData } from '../../../data';
-import lodash from 'lodash'
-import deepdash from 'deepdash';
 import './styles.css';
 
-const _ = deepdash(lodash);
+import { findDeepObjectAndReturn } from '../../../utils';
 
 const Navbar = () => {
     const dispatch = useDispatch();
@@ -17,14 +15,7 @@ const Navbar = () => {
         let index = breadcrumbs.indexOf(item);
         const updatedBreadcrumb = breadcrumbs.slice(0, index + 1);
         dispatch(setBreadCrumbs(updatedBreadcrumb));
-        let obj = {};
-        _.findValueDeep(driveData, (value, key, parent) => {
-            if(key === 'name' && value === item) {
-                obj = parent;
-                return true
-            }
-        },
-        { leavesOnly: false });
+        let obj = findDeepObjectAndReturn(driveData, item);
         dispatch(setActiveFolderData(obj));
     }
     return (

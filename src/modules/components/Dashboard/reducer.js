@@ -3,7 +3,9 @@ import { SET_BREAD_CRUMBS, SET_ACTIVE_FOLDER } from './actionTypes';
 
 const initialState = {
     breadcrumbs: [],
-    activeFolder: new Map([])
+    activeFolder: {},
+    totalFolders: 0,
+    totalFiles: 0
 };
 
 export default (state = initialState, action) => {
@@ -16,7 +18,9 @@ export default (state = initialState, action) => {
         case SET_ACTIVE_FOLDER:
             return {
                 ...state,
-                activeFolder: action.payload
+                activeFolder: action.payload,
+                totalFiles: action.payload.files.length || 0,
+                totalFolders: action.payload.folders.length || 0
             }
         default: {
             return {

@@ -9,8 +9,9 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import filePDF from '../../../assets/icons/filePDF.svg';
 import filePPT from '../../../assets/icons/filePPT.svg';
 import fileText from '../../../assets/icons/fileText.svg';
+import Dropdown from '../Dropdown';
 
-const File = ({ fileType }) => {
+const File = ({ fileType, name, file, handleOptionClicked }) => {
     const fileIcon = fileType === 'pdf' ? filePDF : fileType === 'ppt' ? filePPT : fileText;
     return (
         <Box sx={{ maxWidth: 246, minHeight: 286 }}>
@@ -36,12 +37,10 @@ const File = ({ fileType }) => {
                         {fileType.toUpperCase()}
                         </Typography>
                         <Typography width={190} noWrap={true} variant="h5" lineHeight="24px" fontSize={16} color="var(--text-color-primary)">
-                            Docd sdfs dfsad df sadf asd f asdf asd fasdfasdf sadf sdf 
+                            {name}
                         </Typography>
                     </Box>
-                    <IconButton>
-                        <MoreHorizIcon />
-                    </IconButton>
+                    <Dropdown onItemClick={(value) => handleOptionClicked(file, value)} options={[{type: 'rename', name: 'Rename file'}, {type: 'duplicate', name: 'Duplicate file'}, {type: 'delete', name: 'Delete file'}]} />
                 </CardActions>
             </Card>
         </Box>

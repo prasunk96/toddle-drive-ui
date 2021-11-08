@@ -3,9 +3,9 @@ import Button from '@mui/material/Button';
 
 import './styles.css';
 
-const CustomButton = ({ variant, handleOnClick, disabled, label }) => {
+const CustomButton = ({ variant, type, handleOnClick, disabled, label, size }) => {
   return (
-   <Button variant={variant} className={variant === 'contained' ? 'containedButton' : 'outlinedButton'} onClick={handleOnClick} disabled={disabled} disableElevation>{label}</Button>
+   <Button size={size} variant={variant} className={variant === 'contained' ? type === 'secondary' ? 'containedButtonSecondary' : 'containedButton' : 'outlinedButton'} onClick={handleOnClick} disabled={disabled} disableElevation>{label}</Button>
   );
 }
 

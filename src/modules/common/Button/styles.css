@@ -8,6 +8,16 @@
     background-color: #116770 !important;
 }
 
+.containedButtonSecondary {
+    background-color: var(--red-primary) !important;
+    color: #fff !important;
+    text-transform: capitalize !important;
+}
+
+.containedButtonSecondary:hover {
+    background-color: #c55156 !important;
+}
+
 .outlinedButton {
     background-color: none !important;
     color: var(--text-color-primary) !important;
